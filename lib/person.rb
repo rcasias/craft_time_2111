@@ -9,4 +9,14 @@ class Person
     @supplies = {}
   end
 
+  def add_supply(supply, amount)
+
+    if !@supplies[supply].nil?
+      @supplies[supply] += amount
+    else
+      @supplies[supply] = amount
+    end
+    @supplies
+  end
+
 end
