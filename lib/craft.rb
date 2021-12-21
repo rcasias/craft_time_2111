@@ -7,4 +7,5 @@ class Craft
     @required_supplies = required_supplies
   end
 
+
 end

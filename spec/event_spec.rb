@@ -48,7 +48,7 @@ RSpec.describe Event do
     expect(event.craft_with_most_supplies).to eq("sewing")
   end
 
-  it 'can list craft with most supplies' do
+  it 'can list supplies' do
     hector = Person.new({name: 'Hector', interests: ['sewing', 'millinery', 'drawing']})
     toni = Person.new({name: 'Toni', interests: ['sewing', 'knitting']})
     sewing = Craft.new('sewing', {fabric: 5, scissors: 1, thread: 1, sewing_needles: 1})
@@ -57,4 +57,6 @@ RSpec.describe Event do
 
     expect(event.supply_list).to eq(["fabric", "scissors", "thread", "sewing_needles", "yarn", "knitting_needles"])
   end
+
+
 end

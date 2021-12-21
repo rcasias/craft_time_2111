@@ -36,4 +36,6 @@ class Event
     end.flatten.uniq
   end
 
+  
+
 end
