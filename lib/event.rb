@@ -28,4 +28,12 @@ class Event
     # require'pry';binding.pry
   end
 
+  def supply_list
+    @crafts.map do |craft|
+      craft.required_supplies.map do |k,v|
+        k.to_s
+      end
+    end.flatten.uniq
+  end
+
 end
