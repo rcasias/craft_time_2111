@@ -10,7 +10,6 @@ class Person
   end
 
   def add_supply(supply, amount)
-
     if !@supplies[supply].nil?
       @supplies[supply] += amount
     else
@@ -23,7 +22,6 @@ class Person
     results = []
 
     craft.required_supplies.map do |supply, amount|
-
       if !@supplies.keys.include?(supply.to_s)
         results << false
       elsif !@supplies[supply.to_s].nil? && @supplies[supply.to_s] < amount
@@ -31,7 +29,6 @@ class Person
       else
         results << true
       end
-
     end
 
     if results.include?(false)
@@ -39,7 +36,6 @@ class Person
     else
       return true
     end
-
   end
 
 end

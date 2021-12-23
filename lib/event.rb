@@ -36,6 +36,23 @@ class Event
     end.flatten.uniq
   end
 
-  
+  def attendees_by_craft_interest
+    r = @crafts.each_with_object({}) do |k,v|
+      v[k.name] = []
+    end
+
+    @attendees.each do |attendee|
+      @crafts.each do |craft|
+        if attendee.interests.include?(craft.name)
+          r[craft.name] << attendee
+        else
+          r[craft.name] == attendee
+        end
+      end
+    end
+    r
+  end
+
+
 
 end
