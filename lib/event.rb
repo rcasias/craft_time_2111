@@ -25,7 +25,6 @@ class Event
       v
     end
     most_craft[0]
-    # require'pry';binding.pry
   end
 
   def supply_list
@@ -51,6 +50,20 @@ class Event
       end
     end
     r
+  end
+
+  def crafts_that_use(material)
+    results = []
+
+
+
+    @crafts.each do |craft|
+      if craft.supply_list.include?(material)
+        results << craft
+      end
+    end
+    # require'pry';binding.pry
+    results
   end
 
 
