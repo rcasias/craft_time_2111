@@ -55,15 +55,32 @@ class Event
   def crafts_that_use(material)
     results = []
 
-
-
     @crafts.each do |craft|
       if craft.supply_list.include?(material)
         results << craft
       end
     end
-    # require'pry';binding.pry
     results
+  end
+
+  def assign_attendees_to_crafts
+    hash = @crafts.each_with_object({}) do |k, hash|
+      hash[k] = []
+    end
+
+    @crafts.each do |k,v|
+      @attendees.shuffle.each do |attendee|
+        if attendee.interests.include?(k.name) && attendee.can_build?(k)
+          hash[k] << attendee.name
+        end
+      end
+    end
+    
+    random_result = hash.map do |k,v|
+      hash[k] = v.sample(rand(v.count + 1))
+    end
+    # require'pry';binding.pry
+    hash
   end
 
 

@@ -85,9 +85,44 @@ RSpec.describe Event do
     painting = Craft.new('painting', {canvas: 1, paint_brush: 2, paints: 5})
     event = Event.new("Carla's Craft Connection", [knitting, painting, sewing], [hector, toni, tony])
 
-
     expect(event.crafts_that_use('scissors')).to eq([knitting, sewing])
     expect(event.crafts_that_use('fire')).to eq([])
+  end
+
+  it 'can assign attendees' do
+    hector = Person.new({name: 'Hector', interests: ['sewing', 'millinery', 'drawing', 'painting']})
+    toni = Person.new({name: 'Toni', interests: ['sewing', 'knitting']})
+    tony = Person.new({name: 'Tony', interests: ['drawing', 'knitting', 'painting']})
+    knitting = Craft.new('knitting', {yarn: 20, scissors: 1, knitting_needles: 2})
+    sewing = Craft.new('sewing', {fabric: 5, scissors: 1, thread: 1})
+    painting = Craft.new('painting', {canvas: 1, paint_brush: 2, paints: 5})
+    toni.add_supply('yarn', 30)
+    toni.add_supply('scissors', 2)
+    toni.add_supply('knitting_needles', 5)
+    toni.add_supply('fabric', 10)
+    toni.add_supply('scissors', 1)
+    toni.add_supply('thread', 2)
+    toni.add_supply('paint_brush', 10)
+    toni.add_supply('paints', 20)
+    tony.add_supply('yarn', 20)
+    tony.add_supply('scissors', 2)
+    tony.add_supply('knitting_needles', 2)
+    hector.add_supply('fabric', 5)
+    hector.add_supply('scissors', 1)
+    hector.add_supply('thread', 1)
+    hector.add_supply('canvas', 5)
+    hector.add_supply('paint_brush', 10)
+    hector.add_supply('paints', 20)
+    event = Event.new("Carla's Craft Connection", [knitting, painting, sewing], [hector, toni, tony])
+
+    result = {
+      knitting => [tony],
+      sewing => [hector],
+      painting => [hector]
+    }
+
+    # allow(event).to receive(:assign_attendees_to_crafts) {result}
+    expect(event.assign_attendees_to_crafts).to eq(result)
   end
 
 
