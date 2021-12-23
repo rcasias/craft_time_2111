@@ -71,11 +71,11 @@ class Event
     @crafts.each do |k,v|
       @attendees.shuffle.each do |attendee|
         if attendee.interests.include?(k.name) && attendee.can_build?(k)
-          hash[k] << attendee.name
+          hash[k] << attendee
         end
       end
     end
-    
+
     random_result = hash.map do |k,v|
       hash[k] = v.sample(rand(v.count + 1))
     end
